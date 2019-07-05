@@ -1,7 +1,7 @@
 module Spree
   module Graphql
     module Types
-      class QueryType < Types::BaseObject
+      class Query < Base::Object
         # Add root-level fields here.
         # They will be entry points for queries on your schema.
 

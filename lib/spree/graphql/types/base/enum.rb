@@ -1,7 +1,9 @@
 module Spree
   module Graphql
     module Types
-      class BaseObject < GraphQL::Schema::Object
+      module Base
+        class Enum < GraphQL::Schema::Enum
+        end
       end
     end
   end
