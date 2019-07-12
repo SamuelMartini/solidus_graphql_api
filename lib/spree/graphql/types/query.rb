@@ -5,11 +5,15 @@ module Spree
         # Add root-level fields here.
         # They will be entry points for queries on your schema.
 
-        # TODO: remove me
-        field :test_field, String, null: false,
-          description: "An example field added by the generator"
-        def test_field
-          "Hello World!"
+        # Used by Relay to lookup objects by UUID:
+        field :node, field: GraphQL::Relay::Node.field
+
+        # Fetches a list of objects given a list of IDs
+        field :nodes, field: GraphQL::Relay::Node.plural_field
+
+        field :countries, Types::Country.connection_type, null: false, description: "Supported Countries"
+        def countries
+
         end
       end
     end

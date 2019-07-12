@@ -18,3 +18,8 @@ when 'postgres'
 end
 
 gemspec
+
+gem 'rack-cors'
+
+gem 'graphiql-rails', group: :development
+gem 'graphql-batch'
