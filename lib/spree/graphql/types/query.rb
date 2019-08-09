@@ -5,10 +5,10 @@ module Spree
     module Types
       class Query < Types::Base::Object
         # Used by Relay to lookup objects by UUID:
-        field :node, field: GraphQL::Relay::Node.field
+        add_field(GraphQL::Types::Relay::NodeField)
 
         # Fetches a list of objects given a list of UUIDs
-        field :nodes, field: GraphQL::Relay::Node.plural_field
+        add_field(GraphQL::Types::Relay::NodesField)
       end
     end
   end

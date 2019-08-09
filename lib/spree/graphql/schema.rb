@@ -3,6 +3,8 @@
 module Spree
   module Graphql
     class Schema < GraphQL::Schema
+      use GraphQL::Execution::Interpreter
+
       query Types::Query
 
       # Relay Object Identification:
