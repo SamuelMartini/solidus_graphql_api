@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'solidus_dev_support/rake_tasks'
+require 'graphql-docs'
+
 SolidusDevSupport::RakeTasks.install
 
 require 'rubocop/rake_task'
@@ -32,6 +34,15 @@ namespace :schema do
     setup_graphql_rake_tasks
 
     Rake::Task['graphql:schema:json'].invoke
+  end
+
+  desc 'Generates documentation from schema.graphql'
+  task :generate_docs do
+    GraphQLDocs.build(
+      filename: "#{__dir__}/schema.graphql",
+      output_dir: 'docs',
+      base_url: "#{__dir__}/docs"
+    )
   end
 end
 
