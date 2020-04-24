@@ -3,32 +3,23 @@
 module SolidusGraphqlApi
   module Mutations
     module Checkout
-      class AddAddressesToCheckout < BaseMutation
-        null true
-
+      class AddAddressesToCheckout < BaseCheckoutMutation
         argument :billing_address, Types::InputObjects::AddressInput, required: true
         argument :shipping_address, Types::InputObjects::AddressInput, required: false
-        argument :ship_to_billing_address, Boolean, required: false
+        argument :ship_to_billing_address, Boolean, required: false, default_value: false
 
-        field :order, Types::Order, null: true
-        field :errors, [Types::UserError], null: false
+        private
 
-        def resolve(billing_address:, shipping_address: nil, ship_to_billing_address: false)
-          current_order.update(state: :address)
-
-          update_params = {
+        def update_params(billing_address:, shipping_address:, ship_to_billing_address:)
+          {
             bill_address: Spree::Address.new(billing_address.to_h),
             ship_address: Spree::Address.new(shipping_address.to_h),
             use_billing: ship_to_billing_address
           }
-
-          Spree::OrderUpdateAttributes.new(current_order, update_params).apply
-
-          { errors: user_errors('order', current_order.errors), order: current_order.reload }
         end
 
-        def ready?(*)
-          current_ability.authorize!(:update, current_order, guest_token)
+        def checkout_state
+          :address
         end
       end
     end
