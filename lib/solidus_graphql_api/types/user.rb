@@ -3,7 +3,11 @@
 module SolidusGraphqlApi
   module Types
     class User < Base::RelayNode
-      description 'User.'
+      description <<-INFO
+        Stores require a User model in order to take advantage of all of Solidus's features.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/users/custom-authentication.html)
+      INFO
 
       field :addresses, Types::Address.connection_type, null: false
       field :bill_address, Types::Address, null: true

@@ -3,7 +3,12 @@
 module SolidusGraphqlApi
   module Types
     class Taxonomy < Base::RelayNode
-      description 'Taxonomy.'
+      description <<-INFO
+        Taxonomies and taxons provide a robust way to classify and categorize products.
+        They belong to the `Spree::Taxonomy` and `Spree:Taxon` models.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/taxonomies-and-taxons.html#taxonomies-and-taxons)
+      INFO
 
       field :name, String, null: false
       field :root_taxon, Taxon, null: true

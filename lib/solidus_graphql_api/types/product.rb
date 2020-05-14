@@ -3,7 +3,11 @@
 module SolidusGraphqlApi
   module Types
     class Product < Base::RelayNode
-      description 'Product.'
+      description <<-INFO
+        `Spree::Products` track separate products within your store.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/products.html#products)
+      INFO
 
       field :created_at, GraphQL::Types::ISO8601DateTime, null: true
       field :description, String, null: true

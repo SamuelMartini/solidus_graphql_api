@@ -5,7 +5,11 @@ module SolidusGraphqlApi
     class OptionType < Base::RelayNode
       graphql_name 'OptionType'
 
-      description 'OptionType Type.'
+      description <<-INFO
+        The `Spree::OptionType` model is used to define variants for a product.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/variants.html#option-types)
+      INFO
 
       field :name, String, null: false
       field :presentation, String, null: false

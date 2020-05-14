@@ -1,5 +1,8 @@
 """
-Address.
+        The `Spree::Address` model is used to track address information for customers.
+        Addresses are consumed by `Spree::Orders`, `Spree::Shipments`, and `Spree::Cartons`.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/users/addresses.html#addresses)
 """
 type Address implements Node {
   address1: String!
@@ -73,7 +76,10 @@ input AddressInput {
 }
 
 """
-Country.
+        Countries and states can affect both taxation and shipping on orders.
+        So, an address must always link to a `Spree::Country` object.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/users/addresses.html#countries-and-states)
 """
 type Country implements Node {
   createdAt: ISO8601DateTime
@@ -144,7 +150,10 @@ type CountryEdge {
 }
 
 """
-Credit Card.
+       If your payment processing integration uses the `Spree::CreditCard` class for its payment source,
+       take note that this model does not store all of the payment details.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/payments/payment-sources.html#credit-cards)
 """
 type CreditCard implements Node & PaymentSource {
   address: Address!
@@ -262,7 +271,10 @@ type ImageEdge {
 }
 
 """
-Line item.
+        The `Spree::LineItem` model provides the cost of each item added to an order.
+        Line items provide a link between the order and Spree::Products and `Spree::Variants`.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/orders/overview.html#line-items)
 """
 type LineItem implements Node {
   additionalTaxTotal: Float!
@@ -332,7 +344,9 @@ interface Node {
 }
 
 """
-OptionType Type.
+        The `Spree::OptionType` model is used to define variants for a product.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/variants.html#option-types)
 """
 type OptionType implements Node {
   createdAt: ISO8601DateTime
@@ -400,7 +414,10 @@ type OptionTypeEdge {
 }
 
 """
-OptionValue.
+        The option type requires at least one associated `Spree::OptionValue` to be used.
+        For example, your "Color" option type might have ten or one hundred option values.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/variants.html#option-types)
 """
 type OptionValue implements Node {
   createdAt: ISO8601DateTime
@@ -447,7 +464,10 @@ type OptionValueEdge {
 }
 
 """
-Order.
+        The `Spree::Order` model is one of the key models in Solidus.
+        It provides a central place around which to collect information about a customer order.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/orders/overview.html)
 """
 type Order implements Node {
   additionalTaxTotal: String!
@@ -559,7 +579,10 @@ type PageInfo {
 }
 
 """
-Payment Method.
+        A store may have multiple `Spree::PaymentMethods` configured.
+        Payment methods send payment information to a payment service provider.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/payments/payment-methods.html#payment-methods)
 """
 type PaymentMethod implements Node {
   createdAt: ISO8601DateTime
@@ -571,7 +594,11 @@ type PaymentMethod implements Node {
 }
 
 """
-Payment Source.
+          Each `Spree::Payment` object has optional `source_type` and `source_id`
+attributes that point to a payment source model. 
+          The listed source type is supplied by the `Spree::PaymentMethod` being used.
+
+          More at [Solidus Guide](https://guides.solidus.io/developers/payments/payment-sources.html)
 """
 interface PaymentSource {
   createdAt: ISO8601DateTime
@@ -580,7 +607,10 @@ interface PaymentSource {
 }
 
 """
-Price.
+        A store may have multiple `Spree::PaymentMethods` configured.
+        Payment methods send payment information to a payment service provider.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/payments/payment-methods.html#payment-methods)
 """
 type Price implements Node {
   amount: String!
@@ -629,7 +659,9 @@ type PriceEdge {
 }
 
 """
-Product.
+        `Spree::Products` track separate products within your store.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/products.html#products)
 """
 type Product implements Node {
   createdAt: ISO8601DateTime
@@ -743,7 +775,9 @@ type ProductEdge {
 }
 
 """
-Product Property.
+        Product properties belong to the `Spree::ProductProperty` model. They track individual attributes for a product.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/product-properties.html#product-properties)
 """
 type ProductProperty implements Node {
   createdAt: ISO8601DateTime
@@ -1041,7 +1075,10 @@ type SignInPayload {
 }
 
 """
-State.
+        Countries and states can affect both taxation and shipping on orders.
+        So, an address must always link to a `Spree::Country` object.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/users/addresses.html#countries-and-states)
 """
 type State implements Node {
   abbr: String!
@@ -1127,7 +1164,10 @@ type Store implements Node {
 }
 
 """
-Taxon.
+        Taxonomies and taxons provide a robust way to classify and categorize products.
+        They belong to the `Spree::Taxonomy` and `Spree:Taxon` models.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/taxonomies-and-taxons.html#taxonomies-and-taxons)
 """
 type Taxon implements Node {
   children(
@@ -1200,7 +1240,10 @@ type TaxonEdge {
 }
 
 """
-Taxonomy.
+        Taxonomies and taxons provide a robust way to classify and categorize products.
+        They belong to the `Spree::Taxonomy` and `Spree:Taxon` models.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/taxonomies-and-taxons.html#taxonomies-and-taxons)
 """
 type Taxonomy implements Node {
   createdAt: ISO8601DateTime
@@ -1267,7 +1310,9 @@ type TaxonomyEdge {
 }
 
 """
-User.
+        Stores require a User model in order to take advantage of all of Solidus's features.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/users/custom-authentication.html)
 """
 type User implements Node {
   addresses(
@@ -1342,7 +1387,9 @@ type UserError {
 }
 
 """
-Variant.
+        Spree:Variants track the distinct properties of multiple similar products that you sell.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/variants.html#variants)
 """
 type Variant implements Node {
   createdAt: ISO8601DateTime
@@ -1457,7 +1504,9 @@ type VariantEdge {
 }
 
 """
-Wallet Payment Source.
+        Interface for accessing and updating a user's active "wallet".
+        A Wallet is the *active* list of *reusable* payment sources that a user would like to
+        choose from when placing orders.
 """
 type WalletPaymentSource implements Node {
   createdAt: ISO8601DateTime

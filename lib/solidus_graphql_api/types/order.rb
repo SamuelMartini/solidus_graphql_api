@@ -3,7 +3,12 @@
 module SolidusGraphqlApi
   module Types
     class Order < Base::RelayNode
-      description 'Order.'
+      description <<-INFO
+        The `Spree::Order` model is one of the key models in Solidus.
+        It provides a central place around which to collect information about a customer order.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/orders/overview.html)
+      INFO
 
       field :additional_tax_total, String, null: false
       field :adjustment_total, String, null: false

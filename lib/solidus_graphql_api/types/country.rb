@@ -3,7 +3,12 @@
 module SolidusGraphqlApi
   module Types
     class Country < Base::RelayNode
-      description 'Country.'
+      description <<-INFO
+        Countries and states can affect both taxation and shipping on orders.
+        So, an address must always link to a `Spree::Country` object.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/users/addresses.html#countries-and-states)
+      INFO
 
       field :iso_name, String, null: false
       field :iso, String, null: false

@@ -3,7 +3,11 @@
 module SolidusGraphqlApi
   module Types
     class Variant < Base::RelayNode
-      description 'Variant.'
+      description <<-INFO
+        Spree:Variants track the distinct properties of multiple similar products that you sell.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/products-and-variants/variants.html#variants)
+      INFO
 
       field :created_at, GraphQL::Types::ISO8601DateTime, null: true
       field :default_price, Price, null: false

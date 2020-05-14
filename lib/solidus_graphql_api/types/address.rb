@@ -3,7 +3,12 @@
 module SolidusGraphqlApi
   module Types
     class Address < Base::RelayNode
-      description 'Address.'
+      description <<-INFO
+        The `Spree::Address` model is used to track address information for customers.
+        Addresses are consumed by `Spree::Orders`, `Spree::Shipments`, and `Spree::Cartons`.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/users/addresses.html#addresses)
+      INFO
 
       field :address1, String, null: false
       field :address2, String, null: true

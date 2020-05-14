@@ -3,7 +3,12 @@
 module SolidusGraphqlApi
   module Types
     class Price < Base::RelayNode
-      description 'Price.'
+      description <<-INFO
+        A store may have multiple `Spree::PaymentMethods` configured.
+        Payment methods send payment information to a payment service provider.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/payments/payment-methods.html#payment-methods)
+      INFO
 
       field :amount, String, null: false
       field :country_iso, String, null: true

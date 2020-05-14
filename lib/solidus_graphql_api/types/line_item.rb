@@ -3,7 +3,12 @@
 module SolidusGraphqlApi
   module Types
     class LineItem < Base::RelayNode
-      description 'Line item.'
+      description <<-INFO
+        The `Spree::LineItem` model provides the cost of each item added to an order.
+        Line items provide a link between the order and Spree::Products and `Spree::Variants`.
+
+        More at [Solidus Guide](https://guides.solidus.io/developers/orders/overview.html#line-items)
+      INFO
 
       field :additional_tax_total, Float, null: false
       field :adjustment_total, Float, null: false
