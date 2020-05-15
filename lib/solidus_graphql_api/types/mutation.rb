@@ -12,6 +12,7 @@ module SolidusGraphqlApi
       field :next_checkout_state, mutation: Mutations::Checkout::NextCheckoutState
       field :advance_checkout, mutation: Mutations::Checkout::AdvanceCheckout
       field :complete_checkout, mutation: Mutations::Checkout::CompleteCheckout
+      field :apply_coupon_code, mutation: Mutations::Promotion::ApplyCouponCode
     end
   end
 end
