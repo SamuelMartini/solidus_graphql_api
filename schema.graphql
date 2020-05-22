@@ -218,7 +218,7 @@ Credit Card.
 """
 type CreditCard implements Node & PaymentSource {
   address: Address!
-  ccType: String!
+  ccType: String
   createdAt: ISO8601DateTime
   id: ID!
   lastDigits: String!
@@ -609,6 +609,7 @@ type Order implements Node {
   number: String!
   paymentState: String!
   paymentTotal: String!
+  payments: [OrderPayment!]!
   promoTotal: String!
   shipmentState: String!
   shipmentTotal: String!
@@ -673,6 +674,17 @@ type OrderEdge {
   The item at the end of the edge.
   """
   node: Order
+}
+
+"""
+Order Payment.
+"""
+type OrderPayment implements Node {
+  amount: String
+  createdAt: ISO8601DateTime
+  id: ID!
+  paymentSource: PaymentSource
+  updatedAt: ISO8601DateTime
 }
 
 """
