@@ -22,6 +22,7 @@ module SolidusGraphqlApi
       field :number, String, null: false
       field :payment_state, String, null: false
       field :payment_total, String, null: false
+      field :payments, [OrderPayment], null: false
       field :promo_total, String, null: false
       field :shipment_state, String, null: false
       field :shipment_total, String, null: false
@@ -38,6 +39,10 @@ module SolidusGraphqlApi
 
       def line_items
         Queries::Order::LineItemsQuery.new(order: object).call
+      end
+
+      def payments
+        Queries::Order::PaymentsQuery.new(order: object).call
       end
 
       def shipments
